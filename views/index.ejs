@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Document</title>
+
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <div class="header">
+        <div>
+            <h1 id="userHeader1">
+                <a href="http://localhost:8000"> Jeddit</a>
+            </h1>
+        </div>
+
+        <div class="inline" id="userHeader2">
+            <a href="http://localhost:8000/subs/list"> Subs</a>
+            <% if (username) { %>
+                <a href="http://localhost:8000/posts/create"> Create Post</a>
+                <% } %>
+                    <h1 class="inline">
+                        <%= username %>
+                    </h1>
+                    <div class="inline login">
+                        <p>
+                            <% if (!username) { %>
+                                <a href="/login">Log in</a>
+                                <a href="/signup">Sign Up</a>
+                        </p>
+                        <% } else { %>
+                            <form class="inline login" method="POST" action="/logout">
+                                <button type="submit">Log out</button>
+                            </form>
+                            <% } %>
+
+                    </div>
+        </div>
+    </div>
+
+    <div>
+        <form action="/" method="POST" class="inline size">
+            <button type="submit" class="inline" name="like" id="like" value="like">Sort by likes</button>
+        </form>
+        <form action="/" method="GET" class="inline size">
+            <button type="submit" class="inline" name="date">Sort by date</button>
+        </form>
+    </div>
+
+
+
+    <!-- Body/Posts-->
+    <div id="allPost">
+        <div id="sumPost">
+            <% posts.forEach(element=> { %>
+                <div id="post">
+                    <div>
+                        <h2>
+                            <a class="title" href="/posts/show/<%= element.id %>">
+                                <%= element.title %>
+                            </a>
+                        </h2>
+                        <p class="pPost">
+                            <%= element.description %>
+                        </p>
+                        <h6>
+                            <a class="title" href="<%= element.link %>" target="_blank">
+                                <%= element.link %>
+                            </a>
+                        </h6>
+                    </div>
+                    <div class="sign">
+                        <p>
+                            Votes: <%= calc(element.id) %>
+                        </p>
+                        <p>
+                            <%= users[element.creator].uname %>
+                        </p>
+                    </div class="sign">
+                    <div>
+
+                        <% if (username) { %>
+                            <div>
+                                <form action="posts/voteup/<%= element.id %>" method="POST" class="inline size">
+                                    <button type="submit" class="inline" name="up">Up Vote</button>
+                                </form>
+                                <form action="posts/votedown/<%= element.id %>" method="POST" class="inline size">
+                                    <button type="submit" class="inline" name="down">Down Vote</button>
+                                </form>
+                            </div>
+                            <% } %>
+                                <p id="date">
+                                    <%= findDate(element.timestamp) %>
+                                </p>
+                    </div>
+
+
+                </div>
+                <% }); %>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

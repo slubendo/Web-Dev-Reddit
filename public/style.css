@@ -1,0 +1,140 @@
+/* Nav Bar/ Header */
+
+.header {
+     position: sticky;
+     top: 0px;
+     right: 0px;
+     left: 0px;
+     width: 100%;
+     display: flex;
+     justify-content: space-between;
+     /* margin-left: 35px;
+     margin-right: 45px; */
+     background-color: lightgrey;
+     margin-bottom: 30px;
+ }
+
+ html,
+ body {
+     margin: 0;
+     padding: 0;
+ }
+
+ #userHeader1 {
+    margin-left: 30px;
+ }
+
+ #userHeader2 {
+    margin-right: 30px;
+    margin-top: 20px;
+ }
+
+ .inline {
+     display: inline;
+ }
+
+.login {
+    display:flex;
+    justify-content: right;
+}
+
+#loginHome {
+    margin: 30px;
+}
+
+/* Posts  */
+
+ #post {
+     background-color: rgb(216, 215, 215);
+     width: 500px;
+     max-height: 230px;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     margin-bottom: 30px;
+     width: 100%;
+     border-radius: 3%;
+ }
+
+ #sumPost {
+     display: wrap;
+     justify-content: center;
+     min-width: 450px;
+ }
+
+ #allPost {
+     justify-content: center;
+     display: flex;
+     /* margin-top: 10px; */
+ }
+
+ #title {
+     margin-left: 30px;
+
+ }
+
+ .sign {
+     display: flex;
+     justify-content: space-between;
+
+ }
+
+ h6 {
+     margin-bottom: 5px;
+ }
+
+ #date {
+    font-size: x-small;
+ }
+
+ .pPost, h6 {
+    margin: 0px;
+ }
+
+ /* Comment */
+
+ #creator {
+    display: flex;
+    justify-content: right;
+ }
+
+ .comments {
+    background-color: rgb(234, 232, 232);
+    border-radius: 3%;
+    height: 50px;
+
+
+}
+
+#comment {
+    width: 100%;    
+    height: 175px;
+}
+
+/* Comment Form */
+
+#description {
+    width: 100%;
+    height: 175px;
+}
+
+#descriptionCreate {
+    width: 400px;
+    height: 175px;
+}
+
+
+.form {
+    margin: 30px;
+    
+}
+
+#edit {
+    display: block;
+    margin-top: 10px;
+}
+
+ul {
+    margin: 0px;
+    
+}

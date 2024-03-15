@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Document</title>
+
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <div class="header">
+        <div>
+            <h1 id="userHeader1">
+                <a href="http://localhost:8000"> Jeddit</a>
+            </h1>        </div>
+
+        <div class="inline" id="userHeader2">
+            <a href="http://localhost:8000/subs/list"> Subs</a>
+        </div>
+    </div>
+
+    <h2>Sign Up now for Jeddit</h2>
+  <form method="POST" action="/signup" id="loginHome">
+    <p>
+      <label for="username">Username </label><input id="username" name="username" required value="">
+    </p>
+    <p>
+      <label for="password">Password </label><input id="password" name="password" required value="">
+    </p>
+    <button type="submit">Sign Up!</button>
+  </form>
+</body>
+</html>

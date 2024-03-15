@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Document</title>
+
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <div class="header">
+        <div>
+            <h1 id="userHeader1">
+                <a href="http://localhost:8000"> Jeddit</a>
+            </h1>
+        </div>
+
+        <div class="inline" id="userHeader2">
+            <a href="http://localhost:8000/subs/list"> Subs</a>
+            <% if (username) { %>
+                <a href="http://localhost:8000/posts/create"> Create Post</a>
+                <% } %>
+                    <h1 class="inline">
+                        <%= username %>
+                    </h1>
+                    <div class="inline login">
+                        <p>
+                            <% if (!username) { %>
+                                <a href="/login">Log in</a>
+                                <a href="/signup">Sign Up</a>
+                        </p>
+                        <% } else { %>
+                            <form class="inline login" method="POST" action="/logout">
+                                <button type="submit">Log out</button>
+                            </form>
+                            <% } %>
+
+                    </div>
+        </div>
+    </div>
+
+    <!-- Post -->
+    <div id="allPost">
+
+        <div id="sumPost">
+            <div id="post">
+
+                <h2>
+                    <a class="title" href="/posts/show/<%= postShow.id %>">
+                        <%= postShow.title %>
+                    </a>
+                </h2>
+                <p class="pPost">
+                    <%= postShow.description %>
+                </p>
+                <h6>
+                    <a class="title" href="<%= postShow.link %>" target="_blank">
+                        <%= postShow.link %>
+                    </a>
+                </h6>
+                <div id="uname">
+                    <div class="sign">
+                        <p>
+                            Votes: <%= calc(postShow.id) %>
+                        </p>
+                        <p>
+                            <%= postShow.creator.uname %>
+                        </p>
+                    </div class="sign">
+                    <div>
+                        <% if (username) { %>
+                            <div>
+                                <form action="posts/voteup/<%= postShow.id %>" method="POST" class="inline size">
+                                    <button type="submit" class="inline" name="up">Up Vote</button>
+                                </form>
+                                <form action="posts/votedown/<%= postShow.id %>" method="POST" class="inline size">
+                                    <button type="submit" class="inline" name="down">Down Vote</button>
+                                </form>
+                            </div>
+                            <% } %>
+                                <p id="date">
+                                    <%= findDate(postShow.timestamp) %>
+                                </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+<!-- Comment -->
+
+<form method="POST" action="/posts/edit/<%= postShow.id %>" class="form">
+    <label for="title">Edit Title: </label>
+    <input id="titleCreate" name="title" value="<%= postShow.title %>">
+
+    <label for="link">Edit Link: </label>
+    <input id="link" name="link" value="<%= postShow.link %>">
+
+    <label for="subgroup">Edit Sub: </label>
+    <input id="subgroup" name="subgroup" value="<%= postShow.subgroup %>">
+    
+    <p> 
+        <p>
+            <label for="description">Changes to Description: </label>
+        </p>
+        <textarea id="descriptionCreate" name="description" value="<%= postShow.description %>"></textarea>
+        <button type="submit" id="edit">Edit</button>
+    </p>
+    
+
+  </form>
+
+</div>
+</form>
+</div>
+
+</body>
+
+</html>

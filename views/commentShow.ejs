@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Document</title>
+
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <div class="header">
+        <div>
+            <h1 id="userHeader1">
+                <a href="http://localhost:8000"> Jeddit</a>
+            </h1>
+        </div>
+
+        <div class="inline" id="userHeader2">
+            <a href="http://localhost:8000/subs/list"> Subs</a>
+            <% if (username) { %>
+                <a href="http://localhost:8000/posts/create"> Create Post</a>
+                <% } %>
+                    <h1 class="inline">
+                        <%= username %>
+                    </h1>
+                    <div class="inline login">
+                        <p>
+                            <% if (!username) { %>
+                                <a href="/login">Log in</a>
+                                <a href="/signup">Sign Up</a>
+                        </p>
+                        <% } else { %>
+                            <form class="inline login" method="POST" action="/logout">
+                                <button type="submit">Log out</button>
+                            </form>
+                            <% } %>
+
+                    </div>
+        </div>
+    </div>
+
+    <div id="allPost">
+        <div id="sumPost">
+
+
+            <div class="comments">
+                <p>
+                    <a class="title" href="/comments/show/<%= commentShow.id %>">
+                        <%= commentShow.description %>
+                    </a>
+                </p>
+                <p id="creator">
+                    <%= users[commentShow.creator].uname %>
+                </p>
+            </div>
+            <p>
+            </p>
+     </div>
+ </div>
+
+    <div id="allPost">
+        <div id="sumPost">
+            <ul>
+                <% for(const comment in comments) { %>
+                    <% if (comments[comment].post_id==commentShow.id) { %>
+                <li>
+                            <div class="comments">
+                                <p>
+                                    <a class="title" href="/comments/show/<%= comments[comment].id %>">
+                                        <%= comments[comment].description %>
+                                    </a>
+                                </p>
+                                <p id="creator">
+                                    <%= users[comments[comment].creator].uname%>
+                                </p>
+
+                            </div>
+                            <% } %>
+                            <% if (users[comments[comment].creator].uname== username){ %>
+                                <a class="title" href="/comments/edit/<%= commentShow.id %>" class="inline">Edit</a>
+                                <a class="title" href="/comments/deleteconfirm/<%= commentShow.id %>" class="inline">Delete</a>
+                                <% }} %>
+
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+
+
+
+
+
+    <% if (username) { %>
+        <div id="allPost">
+            <div id="sumPost">
+        <div id="commentSection">
+            <form action="/comments/reply/<%= commentShow.id %>" method="post" id="testForm">
+                <p>
+                    <label for="comment">Reply: </label>
+                </p>
+                <textarea name="description" id="comment" required value=""></textarea>
+                <div>
+                    <button type="submit">Reply</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+        <% } %>
+</body>
+
+</html>
